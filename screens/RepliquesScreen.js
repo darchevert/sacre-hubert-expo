@@ -26,7 +26,7 @@ class RepliquesScreen extends React.Component {
     }
 
   componentDidMount(){
-    fetch('http://10.4.1.45:3000/users/')
+    fetch('http://10.4.1.220:3000/users/')
     .then(function(response) {
         return response.json();
     })
@@ -35,6 +35,7 @@ class RepliquesScreen extends React.Component {
           repliquesList
         });
     });
+
    }
 
   render() {
@@ -123,6 +124,7 @@ function mapDispatchToProps(dispatch) {
     }
   }
 }
+
 
 export default connect(
     null,
