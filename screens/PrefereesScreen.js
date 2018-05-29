@@ -18,22 +18,22 @@ class PrefereesScreen extends React.Component {
       repliquesList: []
     }
   }
-
-  async playSound() {
-    try {
-      const {tintouin, status} = await Expo.Audio.Sound.create(require('../assets/sounds/tintouin.mp3'), {shouldPlay: true});
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  componentDidMount() {
-    fetch('https://jsonplaceholder.typicode.com/users').then(function(response) {
-      return response.json();
-    }).then(function(repliquesList) {
-      this.setState({repliquesList});
-    });
-  }
+  // 
+  // async playSound() {
+  //   try {
+  //     const {tintouin, status} = await Expo.Audio.Sound.create(require('../assets/sounds/tintouin.mp3'), {shouldPlay: true});
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
+  //
+  // componentDidMount() {
+  //   fetch('http://10.4.1.45:3000/users/').then(function(response) {
+  //     return response.json();
+  //   }).then(function(repliquesList) {
+  //     this.setState({repliquesList});
+  //   });
+  // }
 
   render() {
     var preferees = [];
