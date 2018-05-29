@@ -35,7 +35,6 @@ class RepliquesScreen extends React.Component {
       })
       .then(function(repliquesList) {
          ctx.setState({repliquesList});
-         console.log(this.state.repliquesList);
       })
       .catch(function(error) {
           console.log('Request failed', error)
@@ -43,24 +42,27 @@ class RepliquesScreen extends React.Component {
    }
 
   render() {
+    console.log(this.state.repliquesList);
+console.log(this.state.repliquesList.name);
 
     var repliquesList = [];
 
     for(var i=0; i<this.state.repliquesList.lenght; i++) {
 
-        repliquesList.push(<ListItem
+        repliquesList.push(
+          <ListItem
           onPress={() => this.playSound()}
           hideChevron
           key={i}
-          avatar='https://pbs.twimg.com/profile_images/1133992753/OSS117_400x400.png'
-          title={this.state.repliquesList[i].punchline}
+          avatar={this.state.repliquesList.photo}
+          title={this.state.repliquesList.punchline}
           subtitle={
             <View style={styles.subtitleView}>
               <Text style={styles.ratingText}>{this.state.repliquesList[i].name}</Text>
             </View>
-          }
-
-                      />);
+          }>
+        </ListItem>
+        );
     }
 
     return (
