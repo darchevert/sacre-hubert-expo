@@ -27,23 +27,25 @@ class RepliquesScreen extends React.Component {
     }
 
 
-   componentDidMount(){
+  componentDidMount(){
      var ctx = this;
      fetch('http://10.4.1.45:3000/users/')
       .then(function(response) {
           return response.json();
       })
       .then(function(repliquesList) {
-         ctx.setState({repliquesList});
+         ctx.setState({
+           repliquesList
+         });
       })
       .catch(function(error) {
           console.log('Request failed', error)
       });
    }
 
+
   render() {
-    console.log(this.state.repliquesList);
-console.log(this.state.repliquesList.name);
+    console.log(this.state.repliquesList.punchlines);
 
     var repliquesList = [];
 
