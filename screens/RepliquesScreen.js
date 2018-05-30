@@ -1,9 +1,8 @@
 import React from 'react';
-import { ScrollView, StyleSheet, View, Text } from 'react-native';
-import { ExpoLinksView } from '@expo/samples';
-import { List, ListItem, Avatar } from 'react-native-elements';
+import {ScrollView, StyleSheet, View, Text} from 'react-native';
+import {ExpoLinksView} from '@expo/samples';
+import {List, ListItem, Avatar} from 'react-native-elements';
 import {connect} from 'react-redux';
-
 
 class RepliquesScreen extends React.Component {
   static navigationOptions = {
@@ -12,74 +11,64 @@ class RepliquesScreen extends React.Component {
   };
 
   constructor() {
-      super();
-      this.state = {
-        repliquesList:[]
-      }
+    super();
+    this.state = {
+      repliquesList: []
+    }
   }
 
   async playSound() {
-      try {
-        const {tintouin, status} = await Expo.Audio.Sound.create(require('../assets/sounds/tintouin.mp3'), {shouldPlay: true});
-      } catch (error) {
-        console.log(error);
-      }
+    try {
+      const {tintouin, status} = await Expo.Audio.Sound.create(require('../assets/sounds/tintouin.mp3'), {shouldPlay: true});
+    } catch (error) {
+      console.log(error);
     }
+  }
 
-
-   componentDidMount(){
-     var ctx = this;
-     fetch('http://10.4.1.220:3000/users/')
-      .then(function(response) {
-          return response.json();
-      })
-      .then(function(repliquesList) {
-         ctx.setState({repliquesList});
-      })
-      .catch(function(error) {
-          console.log('Request failed', error)
-      });
-   }
+  componentDidMount() {
+    var ctx = this;
+    fetch('http://10.4.1.45:3000/users/').then(function(response) {
+      return response.json();
+    }).then(function(repliquesList) {
+      ctx.setState({repliquesList});
+    }).catch(function(error) {
+      console.log('Request failed', error)
+    });
+  }
 
   render() {
-    console.log(this.state.repliquesList);
-console.log(this.state.repliquesList.name);
+    if (this.state.repliquesList.punchlines != undefined) {
+      let array = ['name', 'punchline', 'sound', 'photo']
+      this.state.repliquesList.punchlines.map(e => {
+        for (el of array) {
+          console.log(e[el]);
+        }
+      });
 
-    var repliquesList = [];
-console.log(this.state.repliquesList);
+      var repliquesList = [];
 
-    for(var i=0; i<this.state.repliquesList.lenght; i++) {
+      for (var i = 0; i < this.state.repliquesList.length; i++) {
 
-        repliquesList.push(
-          <ListItem
-          onPress={() => this.playSound()}
-          hideChevron
-          key={i}
-          avatar={this.state.repliquesList.photo}
-          title={this.state.repliquesList.punchline}
-          subtitle={
-            <View style={styles.subtitleView}>
-              <Text style={styles.ratingText}>{this.state.repliquesList[i].name}</Text>
-            </View>
-          }>
-        </ListItem>
-        );
-    }
+        repliquesList.push(<ListItem onPress={() => this.playSound()} hideChevron="hideChevron" key={i} avatar={this.state.repliquesList.photo} title={this.state.repliquesList.punchline} subtitle={<View style = {
+            styles.subtitleView
+          } > <Text style={styles.ratingText}>{this.state.repliquesList[i].name}</Text>
+        </View>}></ListItem>);
+      }
 
-    return (
-      <ScrollView style={styles.container}>
-        <List containerStyle={{marginBottom: 20}}>
-
+      return (<ScrollView style={styles.container}>
+        <List containerStyle={{
+            marginBottom: 20
+          }}>
 
           {repliquesList}
-
 
         </List>
 
         {/* <Login isVisible={true}/> */}
 
-      </ScrollView>
-    );
+      </ScrollView>);
+    }
+    return (<View></View>);
   }
 }
 
@@ -87,7 +76,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 15,
-    backgroundColor: '#fff',
+    backgroundColor: '#fff'
   },
   subtitleView: {
     paddingLeft: 10,
@@ -98,17 +87,12 @@ const styles = StyleSheet.create({
   }
 });
 
-
 function mapDispatchToProps(dispatch) {
   return {
     onHandleClick: function(name, email, company) {
-        dispatch( {type: 'selecteUser', punchline:punchline, name: name } )
+      dispatch({type: 'selecteUser', punchline: punchline, name: name})
     }
   }
 }
 
-
-export default connect(
-    null,
-    mapDispatchToProps
-)(RepliquesScreen);
+export default connect(null, mapDispatchToProps)(RepliquesScreen);
