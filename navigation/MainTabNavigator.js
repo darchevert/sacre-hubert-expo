@@ -44,7 +44,7 @@ export default TabNavigator(
             iconName = Platform.OS === 'ios' ? `ios-chatboxes${focused ? '' : '-outline'}` : 'md-chatboxes';
             break;
           case 'Account':
-            iconName = Platform.OS === 'ios' ? `ios-settings{focused ? '' : '-outline'}` : 'md-settings';
+            iconName = Platform.OS === 'ios' ? `ios-settings${focused ? '' : '-outline'}` : 'md-settings';
 
         }
         return (
