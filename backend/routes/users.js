@@ -13,7 +13,7 @@ const punchlines = [
     punchline: "OSS117! Pour vous servir!",
     name: "Lucien Bramard / OSS117",
     sound: "../assets/sounds/oss117pourvousservir",
-    photo: '../assets/images/jean_dujardin.jpg'
+    photo: '../assets/images/oss117.png'
   }, {
     punchline: "Fais moi l'amour... Pas envie!",
     name: "Princesse Al Tarouk",
