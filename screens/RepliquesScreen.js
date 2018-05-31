@@ -36,6 +36,7 @@ class RepliquesScreen extends React.Component {
     });
   }
 
+<<<<<<< HEAD
   render() {
     if (this.state.repliquesList.punchlines != undefined) {
       let array = ['name', 'punchline', 'sound', 'photo']
@@ -43,9 +44,50 @@ class RepliquesScreen extends React.Component {
         for (el of array) {
           console.log(e[el]);
         }
+=======
+  componentDidMount(){
+     var ctx = this;
+     fetch('http://10.4.1.45:3000/users/')
+      .then(function(response) {
+          return response.json();
+      })
+      .then(function(repliquesList) {
+         ctx.setState({
+           repliquesList
+         });
+      })
+      .catch(function(error) {
+          console.log('Request failed', error)
+>>>>>>> 3e4ed8fb2a3edea43989412e3a955dbb23eaab72
       });
 
+<<<<<<< HEAD
       var repliquesList = [];
+=======
+
+  render() {
+    console.log(this.state.repliquesList.punchlines);
+
+    var repliquesList = [];
+
+    for(var i=0; i<this.state.repliquesList.lenght; i++) {
+
+        repliquesList.push(
+          <ListItem
+          onPress={() => this.playSound()}
+          hideChevron
+          key={i}
+          avatar={this.state.repliquesList.photo}
+          title={this.state.repliquesList.punchline}
+          subtitle={
+            <View style={styles.subtitleView}>
+              <Text style={styles.ratingText}>{this.state.repliquesList[i].name}</Text>
+            </View>
+          }>
+        </ListItem>
+        );
+    }
+>>>>>>> 3e4ed8fb2a3edea43989412e3a955dbb23eaab72
 
       for (var i = 0; i < this.state.repliquesList.length; i++) {
 
